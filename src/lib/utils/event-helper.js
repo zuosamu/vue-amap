@@ -13,26 +13,29 @@ class EventHelper {
   }
 
   addListener(instance, eventName, handler, context) {
-    if (!AMap.event) throw new Error('please wait for Map API load');
-    let listener = AMap.event.addListener(instance, eventName, handler, context);
+    if (!instance.on) throw new Error('this instance has not "on" attribute');
+    instance.on(eventName, handler, context);
     if (!this._listener.get(instance)) this._listener.set(instance, {});
     let listenerMap = this._listener.get(instance);
     if (!listenerMap[eventName]) listenerMap[eventName] = [];
-    listenerMap[eventName].push(listener);
-
+    listenerMap[eventName].push(handler);
   }
 
   removeListener(instance, eventName, handler) {
-    if (!AMap.event) throw new Error('please wait for Map API load');
-    if (!this._listener.get(instance) || !this._listener.get(instance)[eventName]) return;
+    if (!instance.off) throw new Error('this instance has not "on" attribute');
+    if (
+      !this._listener.get(instance) ||
+      !this._listener.get(instance)[eventName]
+    )
+      return;
     let listenerArr = this._listener.get(instance)[eventName];
     if (handler) {
       let l_index = listenerArr.indexOf(handler);
-      AMap.event.removeListener(listenerArr[l_index]);
+      instance.off(eventName, listenerArr[l_index]);
       listenerArr.splice(l_index, 1);
     } else {
-      listenerArr.forEach(listener => {
-        AMap.event.removeListener(listener);
+      listenerArr.forEach(handler => {
+        instance.off(eventName, handler);
       });
       this._listener.get(instance)[eventName] = [];
     }
@@ -51,7 +54,7 @@ class EventHelper {
       this.removeListener(instance, eventName);
     });
   }
-};
+}
 
 eventHelper = eventHelper || new EventHelper();
 
