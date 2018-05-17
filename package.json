@@ -18,20 +18,13 @@
     "test:unit": "karma  start test/unit/karma.conf.js --single-run",
     "test:dev": "karma  start test/unit/karma.conf.js --single-run=false"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ElemeFE/vue-amap.git"
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
-  "author": "elemefe",
+  "files": ["dist", "src"],
+  "author": "zuosenjun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ElemeFE/vue-amap/issues"
+    "url": "https://github.com/zuosamu/vue-amap/issues"
   },
-  "homepage": "https://github.com/ElemeFE/vue-amap#readme",
+  "homepage": "https://github.com/zuosamu/vue-amap#readme",
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.26.0",

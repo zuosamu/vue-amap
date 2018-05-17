@@ -26,8 +26,9 @@ class EventHelper {
     if (
       !this._listener.get(instance) ||
       !this._listener.get(instance)[eventName]
-    )
+    ) {
       return;
+    }
     let listenerArr = this._listener.get(instance)[eventName];
     if (handler) {
       let l_index = listenerArr.indexOf(handler);
