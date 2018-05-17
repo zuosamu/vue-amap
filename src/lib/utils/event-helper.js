@@ -44,7 +44,7 @@ class EventHelper {
     return AMap.event.addListenerOnce(instance, eventName, handler, context);
   }
   trigger(instance, eventName, args) {
-    return AMap.event.trigger(instance, eventName, args);
+    return instance.emit(eventName);
   }
 
   clearListeners(instance) {
