@@ -12,7 +12,6 @@ export const compile = (tpl, vm) => {
       props[key] = props[key]();
     }
   });
-
   let vNode = new Vue({
     ...props,
     ...node
@@ -21,12 +20,12 @@ export const compile = (tpl, vm) => {
   return vNode.$mount().$el;
 };
 
-export const mountedVNode = (vn) => {
-  const instance = new Vue({render: (h) => h('div', vn)});
+export const mountedVNode = vn => {
+  const instance = new Vue({ render: h => h('div', vn) });
   return instance.$mount().$el;
 };
 
 export const mountedRenderFn = (renderFn, vueInstance) => {
-  const instance = new Vue({render: h => renderFn(h, vueInstance)});
+  const instance = new Vue({ render: h => renderFn(h, vueInstance) });
   return instance.$mount().$el;
 };

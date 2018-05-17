@@ -1,5 +1,5 @@
 {
-  "name": "vue-amap",
+  "name": "vue-amap-matrix",
   "version": "0.5.6",
   "description": "vue amap",
   "main": "./dist/index.js",
